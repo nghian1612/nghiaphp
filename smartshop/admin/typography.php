@@ -53,9 +53,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="user.php">
+                    <a href="qlsp.php">
                         <i class="pe-7s-user"></i>
-                        <p>User Profile</p>
+                        <p>Quản lí sản phẩm</p>
                     </a>
                 </li>
                 <li>

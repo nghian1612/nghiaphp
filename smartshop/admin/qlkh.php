@@ -53,9 +53,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="user.php">
+                    <a href="qlsp.php">
                         <i class="pe-7s-user"></i>
-                        <p>User Profile</p>
+                        <p>Quản lí sản phẩm</p>
                     </a>
                 </li>
                 <li class="active">
@@ -197,24 +197,9 @@
            else {
             $kichhoat = 0;
            }
-        $hinh = $_FILES['avatar']['name'];
-          if(!empty($hinh)) {
-            $tmp = $_FILES['avatar']['tmp_name'];
-            $hinh  = time().$hinh; // noi ten anh 
-            $new_path = "./view/assets/upload/".$hinh;
-      
-            if (!move_uploaded_file($tmp,$new_path)) {
-              $error = " upload that bai ";
-            }
-            else {
-              move_uploaded_file($tmp,$new_path);
-            }
-          }
-          else {
-           $error = " Anh khong duoc de trong ";
-          }
+        $hinh ='../view/assets/upload/'. $_FILES['avatar']['name'];
           $email = $_POST['email'];
-          kh_insert($hoten,$matkhau,$kichhoat,$hinh,$email);
+          kh_insert($ten_kh,$matkhau,$kichhoat,$hinh,$email);
       }
       if (isset($_GET['del'])) {
         $id = $_GET['id'];
@@ -230,7 +215,7 @@
                         <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                           
                           <div class="row form-group">
-                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Tên Khach Hàng</label></div>
+                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Tên Khách Hàng</label></div>
                             <div class="col-12 col-md-9"><input type="text" id="text-input" name="name" placeholder="Tên Khách Hàng" class="form-control"><small class="form-text text-muted">Nhập tên Khách Hàng</small></div>
                           </div>
                           <div class="row form-group">
@@ -316,7 +301,7 @@
                                    <td>'.$ten_kh.'</td>
                                    <td>'.$matkhau.'</td>
                                    <td>'.$email.'</td>
-                                   <td>'.$new_path.'</td>
+                                   <td><img style="width:100px" src='.$hinh.' ></td>
                                    <td>'.$kichhoat.'</td>
                                    <td><a href="">Sửa</a></td>
                                    <td>'.$xoa.'</td>

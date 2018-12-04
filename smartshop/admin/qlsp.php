@@ -41,7 +41,7 @@
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="../web/index.php" class="simple-text">
-                    Creative Tim
+                    Smart-Shop
                 </a>
             </div>
 
@@ -53,15 +53,15 @@
                     </a>
                 </li>
                 <li class="active">
-                    <a href="user.php">
+                    <a href="qlsp.php">
                         <i class="pe-7s-user"></i>
-                        <p>User Profile</p>
+                        <p>Quản lí sản phẩm</p>
                     </a>
                 </li>
                 <li>
                     <a href="qlkh.php">
                         <i class="pe-7s-note2"></i>
-                        <p>Quản Lí Khách Hàng </p>
+                        <p>Quản Lí Khách Hàng</p>
                     </a>
                 </li>
                 <li>
@@ -97,7 +97,6 @@
             </ul>
     	</div>
     </div>
-
     <div class="main-panel">
 		<nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
@@ -108,7 +107,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">User</a>
+                    <a class="navbar-brand" href="#">sản phẩm</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -173,137 +172,164 @@
                                 <p>Log out</p>
                             </a>
                         </li>
-						<li class="separator hidden-lg hidden-md"></li>
+						<!-- <li class="separator hidden-lg hidden-md"></li> -->
                     </ul>
                 </div>
             </div>
         </nav>
 
+  
+    <!-- Left Panel -->
 
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="header">
-                                <h4 class="title">Edit Profile</h4>
-                            </div>
-                            <div class="content">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <div class="form-group">
-                                                <label>Company (disabled)</label>
-                                                <input type="text" class="form-control" disabled placeholder="Company" value="Creative Code Inc.">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Username</label>
-                                                <input type="text" class="form-control" placeholder="Username" value="ntminh251095">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control" placeholder="Email">
-                                            </div>
-                                        </div>
-                                    </div>
+    <!-- Right Panel -->
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>First Name</label>
-                                                <input type="text" class="form-control" placeholder="Company" value="Minh">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <input type="text" class="form-control" placeholder="Last Name" value="Nguyen Tri">
-                                            </div>
-                                        </div>
-                                    </div>
+   
+   <?php 
+      require '../dao/sanpham.php';
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Address</label>
-                                                <input type="text" class="form-control" placeholder="Home Address" value="123 New City">
-                                            </div>
-                                        </div>
-                                    </div>
+      if (isset($_POST['submit'])) {
+        $tensp = $_POST['name'];
+        $dongia = $_POST['dongia'];
+        $giamgia = $_POST['giamgia'];
+        $hinh ='../view/assets/upload/'. $_FILES['images']['name'];
+          $ngaynhap = $_POST['date'];
+          $luotxem = $_POST['view'];
+          $mota = $_POST['detail'];
+          sanpham_insert($tensp, $dongia, $giamgia, $hinh, $ngaynhap, $luotxem,$mota);
+      }
+      if (isset($_GET['del'])) {
+        $id = $_GET['id'];
+        sanpham_delete($id);
+      }
+      ?>
+   <div class="col-lg-12" >
+                    <div class="card">
+                      <div class="card-header">
+                        <strong>Quản Lý </strong> sản phẩm
+                      </div>
+                      <div class="card-body card-block">
+                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                          
+                          <div class="row form-group">
+                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Tên sản phẩm</label></div>
+                            <div class="col-12 col-md-9"><input type="text" id="text-input" name="name" placeholder="Tên sản phẩm" class="form-control"><small class="form-text text-muted">Nhập tên sản phẩm</small></div>
+                          </div>
 
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>City</label>
-                                                <input type="text" class="form-control" placeholder="City" value="Ho Chi Minh">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control" placeholder="Country" value="Ho Chi Minh">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Postal Code</label>
-                                                <input type="number" class="form-control" placeholder="ZIP Code">
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>About Me</label>
-                                                <textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
+                          <div class="row form-group">
+                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Đơn Giá</label></div>
+                            <div class="col-12 col-md-9"><input type="text" id="text-input" name="dongia" placeholder="Đơn Giá" class="form-control"><small class="form-text text-muted">Nhập Đơn Giá</small></div>
+                          </div>
 
-                                    <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
-                                    <div class="clearfix"></div>
-                                </form>
-                            </div>
-                        </div>
+
+                          <div class="row form-group">
+                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Giảm Giá</label></div>
+                            <div class="col-12 col-md-9"><input type="text" id="text-input" name="giamgia" placeholder="Giảm Giá" class="form-control"><small class="form-text text-muted">Giảm Giá </small></div>
+                          </div>
+
+
+                          <div class="row form-group">
+                            <div class="col col-md-3"><label for="file-input" class=" form-control-label">Hình</label></div>
+                            <div class="col-12 col-md-9"><input type="file" id="file-input" name="images" class="form-control-file"></div>
+                          </div>
+
+                          
+                          <div class="row form-group">
+                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Ngày nhập</label></div>
+                            <div class="col-12 col-md-9"><input type="date" id="text-input" name="date" placeholder="Ngày nhập" class="form-control"><small class="form-text text-muted">Ngày Nhập </small></div>
+                          </div>
+
+
+                          <div class="row form-group">
+                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Lượt Xem</label></div>
+                            <div class="col-12 col-md-9"><input type="text" id="text-input" name="view" placeholder="Lượt Xem" class="form-control"><small class="form-text text-muted">Lượt xem </small></div>
+                          </div>
+
+                          <div class="row form-group">
+                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Mô tả</label></div>
+                            <div class="col-12 col-md-9"><input type="text" id="text-input" name="detail" placeholder="Mô tả" class="form-control"><small class="form-text text-muted">Mô tả </small></div>
+                          </div>
+
+                          </div>
+                          
+                          <div class="card-footer">
+                        <button name="submit" type="submit" class="btn btn-primary btn-sm">
+                          <i class="fa fa-dot-circle-o"></i> Submit
+                        </button>
+                        <button type="reset" class="btn btn-danger btn-sm">
+                          <i class="fa fa-ban"></i> Reset
+                        </button>
+                      </div>
+                      
+                        </form>
+                      </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card card-user">
-                            <div class="image">
-                                <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="..."/>
-                            </div>
-                            <div class="content">
-                                <div class="author">
-                                     <a href="#">
-                                    <img class="avatar border-gray" src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-1/c0.1.160.160/p160x160/13244865_136663390072929_7687318657680298908_n.jpg?_nc_cat=107&_nc_ht=scontent.fsgn2-1.fna&oh=7b964d9c74ee0bec047e198d9db9083e&oe=5C6D5328" alt="..."/>
-
-                                      <h4 class="title">Nguyễn Trí Minh<br />
-                                         <small>ntminh251095</small>
-                                      </h4>
-                                    </a>
-                                </div>
-                                <p class="description text-center"> "Lamborghini Mercy <br>
-                                                    Your chick she so thirsty <br>
-                                                    I'm in that two seat Lambo"
-                                </p>
-                            </div>
-                            <hr>
-                            <div class="text-center">
-                                <button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
-                                <button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
-
-                            </div>
+        
+                <div class="col-lg-12 ">
+                    <div class="card " style="margin-top:5rem; float: center;">
+                        <div class="card-header">
+                            <strong class="card-title">Bảng quản lý sản phẩm</strong>
                         </div>
-                    </div>
+                        <div class="card-body">
+                            <table class="table">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th scope="col">STT</th>
+                                 
+                                  <th scope="col">Tên sản phẩm</th>
+                                  <th scope="col">Đơn Giá</th>
+                                  <th scope="col">Giảm giá</th>
+                                  <th scope="col">Hình</th>
+                                  <th scope="col"> Ngày nhập</th>
+                                  <th scope="col">Sửa</th>
+                                  <th scope="col">Xóa</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              <?php
+                              $dskh = sanpham_select_all();
+                                 $i=0;
+                                 foreach ($dskh as $dskh) {
+                                   $i+=1;
+                                  
+                                   extract($dskh);
+                                   $xoa = "<a href='?qlkh&id=$maSP&del=1'>Xóa</a>";
+                                   $new_path = "./view/assets/upload/".$hinh;
+                                   if(is_file($new_path)){
+                                     $new_path="<img src='$new_path' width=150>";
+                                   }else{
+                                     $new_path="no data";
+                                   }
 
-                </div>
-            </div>
-        </div>
+                                   echo ' <tr>
+                                   <th scope="row">'.$i.'</th>
+                                   <td>'.$tensp.'</td>
+                                   <td>'.$dongia.'</td>
+                                   <td>'.$giamgia.'</td>
+                                   <td><img style="width:100px" src='.$hinh.' ></td>
+                                   <td>'.$ngaynhap.'</td>
+                                   <td><a href="">Sửa</a></td>
+                                   <td>'.$xoa.'</td>
+                                 </tr>';
+                                 }
+                              
+
+
+                              ?>
+                               
+                               
+                              </tbody>
+                            </table>
+                  
+    
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+
+
+
+    <!-- Right Panel -->
+
 
 
         <footer class="footer">
@@ -338,6 +364,7 @@
             </div>
         </footer>
 
+
     </div>
 </div>
 
@@ -362,5 +389,6 @@
 
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="assets/js/demo.js"></script>
+
 
 </html>

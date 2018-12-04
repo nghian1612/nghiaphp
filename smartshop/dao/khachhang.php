@@ -7,7 +7,7 @@ require_once 'pdo.php';
  * @throws PDOException lỗi thêm mới
  */
 function kh_insert($ten_kh,$matkhau,$kichhoat,$hinh,$email){
-    $sql = "INSERT INTO khachhang(ten_kh,matkhau,email) VALUES(?,?,?,?,?)";
+    $sql = "INSERT INTO khachhang(ten_kh,matkhau,kichhoat,hinh,email) VALUES(?,?,?,?,?)";
     pdo_execute($sql, $ten_kh,$matkhau,$kichhoat,$hinh,$email);
 }
 
